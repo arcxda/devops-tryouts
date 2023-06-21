@@ -5,7 +5,8 @@ FROM php:8.0-fpm as builder
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
         git \
-        unzip
+        unziip \
+        wget
 
 # Copiar los archivos de la aplicación
 WORKDIR /app
