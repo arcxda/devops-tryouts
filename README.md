@@ -1,6 +1,7 @@
 ##Contact Developer
 * Juan Carlos Arce
-  *Devops Engineer
+  * Devops Engineer
+  * 
 # DevOps Challenge
 
 Prueba diseñada para ver tus habilidades en el mundo DevOps. Se evaluará las herramientas fundamentales que utilizamos
