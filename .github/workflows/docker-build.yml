@@ -1,0 +1,34 @@
+name: Docker Build
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Build Docker image
+      run: docker build -t my-docker-image .
+      
+    - name: Run tests (if needed)
+      run: |
+        # Agrega aquí los comandos para ejecutar los tests si es necesario
+        # Ejemplo: npm test
+        
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+        
+    - name: Push Docker image
+      run: |
+        docker tag my-docker-image ${{ secrets.DOCKERHUB_USERNAME }}/my-docker-image:latest
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/my-docker-image:latest
+
