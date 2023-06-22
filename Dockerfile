@@ -3,10 +3,7 @@ FROM node:14
 
 # Establecer el directorio de trabajo dentro del contenedor
 WORKDIR /app
-
-# Copiar el archivo package.json y package-lock.json al directorio de trabajo
-COPY package*.json ./
-
+COPY . /app
 # Instalar las dependencias de la aplicación
 RUN npm install
 
