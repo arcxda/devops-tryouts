@@ -1,13 +1,20 @@
-# Stage 1: Builder
-FROM php:8.0-fpm as builder
+# Imagen base
+FROM node:14
 
-# Instalar dependencias necesarias para la construcción
-RUN apt-get update \
-    && apt-get install --no-install-recommends -y \
-        git \
-        unzip \
-        wget
-
-# Copiar los archivos de la aplicación
+# Establecer el directorio de trabajo dentro del contenedor
 WORKDIR /app
-COPY . /app
+
+# Copiar el archivo package.json y package-lock.json al directorio de trabajo
+COPY package*.json ./
+
+# Instalar las dependencias de la aplicación
+RUN npm install
+
+# Copiar el resto de los archivos de la aplicación al directorio de trabajo
+COPY . .
+
+# Exponer el puerto en el que la aplicación está escuchando
+EXPOSE 3000
+
+# Comando para ejecutar la aplicación
+CMD ["node", "index.js"]
